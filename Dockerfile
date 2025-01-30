@@ -57,8 +57,14 @@ RUN if [ "${TARGETARCH}" = "amd64" ]; then apk add --no-cache libva-intel-driver
 COPY --from=build /build/go2rtc /usr/local/bin/
 COPY --from=ngrok /bin/ngrok /usr/local/bin/
 
+RUN mkdir -p /helpers
+COPY helpers/* /helpers
+RUN chmod a+x /helpers/*
+
 ENTRYPOINT ["/sbin/tini", "--"]
 VOLUME /config
 WORKDIR /config
+
+
 
 CMD ["go2rtc", "-config", "/config/go2rtc.yaml"]
