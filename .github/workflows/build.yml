@@ -124,7 +124,7 @@ jobs:
         uses: docker/metadata-action@v5
         with:
           images: |
-            ${{ github.repository }}
+            ${{ vars.DOCKER_IMAGE }}
             ghcr.io/${{ github.repository }}
           tags: |
             type=ref,event=branch
@@ -180,7 +180,7 @@ jobs:
         uses: docker/metadata-action@v5
         with:
           images: |
-            ${{ github.repository }}
+            ${{ vars.DOCKER_IMAGE }}
             ghcr.io/${{ github.repository }}
           flavor: |
             suffix=-hardware,onlatest=true
